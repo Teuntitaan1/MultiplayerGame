@@ -38,7 +38,8 @@ def handle_client(connection, address):
         # checks if there is a message
         message_length = connection.recv(HEADER).decode(FORMAT)
         if message_length:
-            message = connection.recv(int(message_length)).decode(FORMAT)
+            message_length = int(message_length)
+            message = connection.recv(message_length).decode(FORMAT)
             print(f"{address} {message}")
             if message == DISCONNECTOR:
                 connected = False
@@ -50,7 +51,7 @@ def start():
     server.listen()
     while 1:
         connection, adrress = server.accept()
-        thread = threading.Thread(target=handle_client(), args=(connection, adrress))
+        thread = threading.Thread(target=handle_client(connection, adrress))
         thread.start()
         print(f"Active connections: {threading.active_count() - 1}")
 
