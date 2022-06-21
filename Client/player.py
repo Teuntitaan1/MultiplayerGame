@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 
@@ -8,6 +10,8 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         # kind of useless right now
         self.name = name
+        # color
+        self.color = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
         # x and y
         self.x = x
         self.y = y
@@ -16,8 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.height = height
         # movementspeed
         self.movementspeed = 5
-        # collisionbox
-        self.rect = pygame.Rect([self.x, self.y], [self.width, self.height])
+
 
     def handlemovement(self):
 
@@ -32,7 +35,4 @@ class Player(pygame.sprite.Sprite):
             self.y -= self.movementspeed
         elif key[pygame.K_DOWN]:
             self.y += self.movementspeed
-        self.rect = pygame.Rect([self.x, self.y], [self.width, self.height])
 
-    def draw(self, screen):
-        pygame.draw.rect(screen, (255, 0, 0), self.rect)

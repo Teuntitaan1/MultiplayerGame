@@ -1,3 +1,2 @@
-def drawwindow(screen, player):
+def drawwindow(screen):
     screen.fill((255, 255, 255))
-    player.draw(screen)
