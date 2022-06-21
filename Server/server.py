@@ -40,7 +40,7 @@ def handle_client(connection, address):
         if message_length:
             message_length = int(message_length)
             message = connection.recv(message_length).decode(FORMAT)
-            print(f"{address} {message}")
+            print(f"{address}: {message}")
             if message == DISCONNECTOR:
                 connected = False
     connection.close()
