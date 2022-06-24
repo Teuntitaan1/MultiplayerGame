@@ -36,7 +36,7 @@ try:
 except socket.error as e:
     print(e)
 print("Server has started".upper())
-server.listen()
+server.listen(2)
 
 
 def handle_client(connection, address):
@@ -65,7 +65,6 @@ while 1:
     connection, adrress = server.accept()
     thread = threading.Thread(target=handle_client(connection, adrress))
     thread.start()
-    print(f"Active connections: {threading.active_count() - 1}")
 
 
 
