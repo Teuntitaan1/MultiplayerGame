@@ -13,3 +13,9 @@ class GameInfo:
         self.playerlist.append(player)
     def getplayerlist(self):
         return self.playerlist
+    def deleteaplayerinlist(self, player):
+        listindex = 0
+        for i in self.playerlist:
+            if i.name == player.name:
+                self.playerlist.pop(listindex)
+                listindex += 1

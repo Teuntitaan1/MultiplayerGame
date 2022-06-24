@@ -20,7 +20,6 @@ class Player(pygame.sprite.Sprite):
         self.height = height
         # movementspeed
         self.movementspeed = 5
-
         self.rect = pygame.Rect([self.x, self.y], [self.width, self.height])
 
 
@@ -40,4 +39,5 @@ class Player(pygame.sprite.Sprite):
         self.rect = pygame.Rect([self.x, self.y], [self.width, self.height])
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
+
 

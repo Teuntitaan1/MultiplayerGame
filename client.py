@@ -22,6 +22,7 @@ windowsize = 800, 800
 pygame.display.set_caption("MultiplayerGame")
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(windowsize)
+font = pygame.font.SysFont("Vera", 40)
 
 def main():
     # game variables
@@ -44,6 +45,8 @@ def main():
         playerlist = network.send(player)
         for i in playerlist:
             i.draw(screen)
+            name = font.render(i.name, True, (0, 0, 0))
+            screen.blit(name, (i.x, i.y - i.height / 2))
 
 
         # screen update

@@ -1,5 +1,5 @@
 import socket
-import threading
+from _thread import *
 import json
 import pickle
 from gameinfo import GameInfo
@@ -51,9 +51,10 @@ def handle_client(connection, address):
             reply = gameInfo.getplayerlist()
             print("Recieved: ", reply)
             print("Send:", reply)
-            connection.send(pickle.dumps(reply))
+            connection.sendall(pickle.dumps(reply))
         except Exception as e:
             print(e)
+            gameInfo.deleteaplayerinlist(data)
             connected = False
     print(f"{address} has disconnected")
     connection.close()
@@ -63,8 +64,8 @@ print("Entered the loop".upper())
 # server loop
 while 1:
     connection, adrress = server.accept()
-    thread = threading.Thread(target=handle_client(connection, adrress))
-    thread.start()
+    start_new_thread(handle_client, (connection, adrress))
+
 
 
 
