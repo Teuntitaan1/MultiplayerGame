@@ -42,17 +42,19 @@ server.listen(2)
 def handle_client(connection, address):
     print(f"New connection {address} connected.".upper())
     connection.send(str.encode("Connected"))
-
+    playername = None
     connected = True
     while connected:
         try:
             data = pickle.loads(connection.recv(2048))
+            if data is not None:
+                playername = data.name
             gameInfo.setplayerlist(data)
             reply = gameInfo.getplayerlist()
             connection.sendall(pickle.dumps(reply))
         except Exception as e:
             print(e)
-            gameInfo.deleteaplayerinlist(data)
+            gameInfo.deleteaplayerinlist(playername)
             connected = False
     print(f"{address} has disconnected")
     connection.close()
