@@ -10,9 +10,9 @@ pygame.init()
 
 
 # server variables
-PORT = 5050
+PORT = int(input("What is the port of the server?"))
 FORMAT = "utf-8"
-SERVER = "192.168.68.132"
+SERVER = input("What is the ip of the server?")
 ADDRESS = (SERVER, PORT)
 
 # sending server stuff
@@ -24,9 +24,9 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode(windowsize)
 font = pygame.font.SysFont("Vera", 40)
 
-def main():
+def main(windowsize):
     # game variables
-    player = Player(str(input("What do you want your name to be?")), 400, 400, 80, 80)
+    player = Player(str(input("What do you want your name to be?")), 400, 400, 80, 80, windowsize[0], windowsize[1] )
     Running = True
     refreshrate = 60
 
@@ -34,11 +34,10 @@ def main():
         # event listener
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                print("Shutting down game")
                 Running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    print("Shutting down game")
+
                     Running = False
         drawwindow(screen)
         player.handlemovement()
@@ -46,7 +45,9 @@ def main():
         for i in playerlist:
             i.draw(screen)
             name = font.render(i.name, True, (0, 0, 0))
-            screen.blit(name, (i.x, i.y - i.height / 2))
+            screen.blit(name, (i.x, i.y - 25))
+            health = font.render(str(i.health), True, i.handlehealthcolor())
+            screen.blit(health, (i.x, i.y - 50))
 
 
         # screen update
@@ -54,6 +55,7 @@ def main():
         pygame.display.update()
 
 
-main()
+main(windowsize)
+print("Shutting down game")
 pygame.quit()
 sys.exit()

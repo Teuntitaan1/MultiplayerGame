@@ -49,8 +49,6 @@ def handle_client(connection, address):
             data = pickle.loads(connection.recv(2048))
             gameInfo.setplayerlist(data)
             reply = gameInfo.getplayerlist()
-            print("Recieved: ", reply)
-            print("Send:", reply)
             connection.sendall(pickle.dumps(reply))
         except Exception as e:
             print(e)
