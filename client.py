@@ -17,16 +17,9 @@ ADDRESS = (SERVER, PORT)
 
 # sending server stuff
 network = Network()
-# Pygame window setup
-windowsize = 800, 800
-pygame.display.set_caption("MultiplayerGame")
-clock = pygame.time.Clock()
-screen = pygame.display.set_mode(windowsize)
-font = pygame.font.SysFont("Vera", 40)
-
-def main(windowsize):
+def main(Player):
     # game variables
-    player = Player(str(input("What do you want your name to be?")), 400, 400, 80, 80, windowsize[0], windowsize[1] )
+    player = Player
     Running = True
     refreshrate = 60
 
@@ -54,8 +47,19 @@ def main(windowsize):
         clock.tick(refreshrate)
         pygame.display.update()
 
+# Windowsize for the player
+windowsize = 800, 800
+# player init
+player = Player(str(input("What do you want your name to be?")), 400, 400, 80, 80, windowsize[0], windowsize[1])
+# pygame setup
+pygame.display.set_caption("MultiplayerGame")
+clock = pygame.time.Clock()
+screen = pygame.display.set_mode(windowsize)
+font = pygame.font.SysFont("Vera", 40)
 
-main(windowsize)
+# main functiom
+main(player)
+# triggers when main ends
 print("Shutting down game")
 pygame.quit()
 sys.exit()
