@@ -26,6 +26,9 @@ class Player(pygame.sprite.Sprite):
         self.screenwidth = screenwidth
         self.screenheight = screenheight
 
+        # type
+        self.type = "Player"
+
 
     def handlemovement(self):
 
@@ -76,6 +79,44 @@ class Player(pygame.sprite.Sprite):
         pygame.draw.rect(screen, self.color, self.rect)
 
     # simple gradiant producer from green to red to indicate how close the player is to dying
+    def handlehealthcolor(self):
+        return self.healthbegin - self.health, 0 + self.health, 0
+
+# simple enemy
+# player sprite
+class Simplefollowenemy(pygame.sprite.Sprite):
+    def __init__(self, name, x, y, width, height, screenwidth, screenheight):
+
+        super().__init__()
+        # kind of useless right now
+        self.name = name
+        # color
+        self.color = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+        # x and y
+        self.x = x
+        self.y = y
+        # width and height variables
+        self.width = width
+        self.height = height
+        # movementspeed
+        self.movementspeed = 5
+        self.rect = pygame.Rect([self.x, self.y], [self.width, self.height])
+        self.health = 150
+        self.healthbegin = 150
+        self.screenwidth = screenwidth
+        self.screenheight = screenheight
+
+        # type
+        self.type = "Simplefollowenemy"
+
+
+    def handlemovement(self):
+        self.rect = pygame.Rect([self.x, self.y], [self.width, self.height])
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, self.color, self.rect)
+
+    # simple gradiant producer from green to red to indicate how close the enemy is to dying
     def handlehealthcolor(self):
         return self.healthbegin - self.health, 0 + self.health, 0
 

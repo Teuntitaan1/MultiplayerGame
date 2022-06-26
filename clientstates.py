@@ -19,8 +19,8 @@ def maingame(player, screen, font, network, clock):
                     Running = False
         drawwindow(screen)
         player.handlemovement()
-        playerlist = network.send(player)
-        for i in playerlist:
+        entitylist = network.send(player)
+        for i in entitylist:
             i.draw(screen)
             name = font.render(i.name, True, (0, 0, 0))
             screen.blit(name, (i.x, i.y - 25))

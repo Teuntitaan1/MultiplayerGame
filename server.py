@@ -9,6 +9,7 @@ PORT = int(input("What port should the server run on?"))
 SERVER = socket.gethostbyname(socket.gethostname())
 SERVERNAME = socket.gethostname()
 
+
 # prints the values of the hosted server
 print(f"The port of the server = {PORT}".upper())
 print(f"The servers ip = {SERVER}".upper())
@@ -49,9 +50,14 @@ def handle_client(connection, address):
     print(f"{address} has disconnected")
     connection.close()
 
+def handlenemies(gameInfo, enemies):
+    while 1:
+        pass
 
 gameInfo = GameInfo()
 print("Entered the loop".upper())
+enemies = "lol"
+start_new_thread(handlenemies, (gameInfo, enemies))
 # server loop
 while 1:
     connection, adrress = server.accept()
