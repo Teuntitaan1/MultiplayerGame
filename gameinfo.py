@@ -18,4 +18,5 @@ class GameInfo:
         for i in self.playerlist:
             if i.name == playername:
                 self.playerlist.pop(listindex)
-                listindex += 1
+                print("deleted a player")
+            listindex += 1
