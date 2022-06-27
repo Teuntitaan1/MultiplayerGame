@@ -57,7 +57,7 @@ def handlenemies(gameInfo, enemies):
 gameInfo = GameInfo()
 print("Entered the loop".upper())
 enemies = "lol"
-start_new_thread(handlenemies, (gameInfo, enemies))
+# start_new_thread(handlenemies, (gameInfo, enemies))
 # server loop
 while 1:
     connection, adrress = server.accept()
